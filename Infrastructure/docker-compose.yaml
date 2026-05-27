@@ -1,0 +1,30 @@
+services:
+  redis:
+    image: redis:latest
+    environment:
+      - REDIS_ARGS=--requirepass sh2TajXeytyAG1eHYPit
+    container_name: redis
+    ports:
+      - 6379:6379
+  postresql:
+    image: postgres:latest
+    container_name: postgresql.db
+    environment:
+      POSTGRES_DB: postgres_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: bJDceCRZHDrkwgyX1qc1
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata_indigosoft:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  pgdata_indigosoft:
