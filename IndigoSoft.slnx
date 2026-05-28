@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="IndigoSoft.QuotationCollector.Server/IndigoSoft.QuotationCollector.Server.csproj" />
+  <Project Path="IndigoSoft.QuotationCollector.Tests/IndigoSoft.QuotationCollector.Tests.csproj" Id="92c2460f-4a8b-4927-9ce8-d229ef41e7f6" />
   <Project Path="IndigoSoft.QuotationsMocker.Producer.Api/IndigoSoft.QuotationsMocker.Producer.Api.csproj" Id="b4594907-026b-4622-82cd-844a31e0c9a6" />
 </Solution>
