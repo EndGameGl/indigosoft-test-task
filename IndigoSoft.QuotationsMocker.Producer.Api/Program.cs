@@ -23,11 +23,18 @@ app.MapWebSocketTickerEndpoint(
     "/ws/metatrader",
     () =>
     {
-        return new
-        {
-            symbol = "A",
-            bid = (decimal)Math.Round(Random.Shared.NextDouble(), digits: 2),
-        };
+        return TestAssets
+            .TestQuotations.Select(x =>
+            {
+                return new
+                {
+                    symbol = x.StockTicker,
+                    bid = Math.Round(x.Bid.GetValueOrDefault(), decimals: 2),
+                    ask = Math.Round(x.Ask.GetValueOrDefault(), decimals: 2),
+                };
+            })
+            .OrderBy(x => Random.Shared.Next())
+            .First();
     }
 );
 
@@ -35,11 +42,18 @@ app.MapWebSocketTickerEndpoint(
     "/ws/testtradingapp",
     () =>
     {
-        return new
-        {
-            symbol = "A",
-            bid = (decimal)Math.Round(Random.Shared.NextDouble(), digits: 2),
-        };
+        return TestAssets
+            .TestQuotations.Select(x =>
+            {
+                return new
+                {
+                    s = x.StockTicker,
+                    b = Math.Round(x.Bid.GetValueOrDefault(), decimals: 2),
+                    a = Math.Round(x.Ask.GetValueOrDefault(), decimals: 2),
+                };
+            })
+            .OrderBy(x => Random.Shared.Next())
+            .Take(Random.Shared.Next(10, 30));
     }
 );
 
